@@ -1,21 +1,21 @@
-require 'json'
-
-package = JSON.parse(File.read(File.join(__dir__, 'package.json')))
+package = JSON.parse(File.read(File.join(File.dirname(__FILE__), "package.json")))
 
 Pod::Spec.new do |s|
-  s.name         = "ReactNativeShareExtension"
-  s.version      = package['version']
-  s.summary      = package['description']
-  s.license      = package['license']
+  # NPM package specification
+  
+  s.name           = 'RNCPushNotificationIOS'
+  s.version        = package['version']
+  s.summary        = package['description']
+  s.description    = package['description']
+  s.license        = package['license']
+  s.author         = package['author']
+  s.homepage       = package['homepage']
+  
+  s.source       = { :git => "https://github.com/react-native-community/react-native-push-notification-ios", :tag => "v#{s.version}" }
+  s.source_files = "ios/*.{h,m}"
 
-  s.authors      = package['author']
-  s.homepage     = package['repository']['url']
   s.platform     = :ios, "9.0"
-  s.ios.deployment_target = '9.0'
-  s.tvos.deployment_target = '10.0'
 
-  s.source       = { :git => "https://github.com/skarthick/react-native-share-extension.git", :tag => "master" }
-  s.source_files  = "ios/**/*.{h,m}"
-
-  s.dependency 'React'
-end
+  s.dependency "React"
+  
+  end
